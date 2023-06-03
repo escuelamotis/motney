@@ -213,6 +213,8 @@
 						<th>Salario Mensual $</th>
 						<th>Salario Diario $</th>
 						<th>Salario por Hora $</th>
+						<th>Acciones</th> <!-- Nueva columna para los botones de eliminar registros -->
+
 					</tr>
 					<!-- Los empleados se agregarán aquí -->
 				</table>
@@ -230,6 +232,8 @@
 						<th>Valor mensual $</th>
 						<th>Valor diario $</th>
 						<th>Valor por hora $</th>
+						<th>Acciones</th> <!-- Nueva columna para los botones de eliminar registros -->
+
 					</tr>
 					<!-- Los gastos se agregarán aquí -->
 				</table>
@@ -250,6 +254,8 @@
                             <th>Vida Útil (Años) #</th>
                             <th>Desgaste Anual #</th>
                             <th>Desgaste Hora #</th>
+							<th>Acciones</th> <!-- Nueva columna para los botones de eliminar registros -->
+
                         </tr>
                         <!-- Los gastos por desgaste se agregarán aquí -->
                     </table>
@@ -267,6 +273,7 @@
 					<th>Costo Unitario $</th>
 					<th>Cantidad #</th>
 					<th>Costo Total $</th> <!-- Nueva columna para el costo total -->
+					<th>Acciones</th> <!-- Nueva columna para los botones de eliminar registros -->
 
 				</tr>
 					<!-- Los materiales se agregarán aquí -->
@@ -304,22 +311,35 @@
 
 		});
 
-        const addElementToTable = (tableId, element, id, inputs) => {
-            const table = document.getElementById(tableId);
-            const row = table.insertRow();
+		const addElementToTable = (tableId, element, id, inputs) => {
+			const table = document.getElementById(tableId);
+			const row = table.insertRow();
 
-            inputs.forEach(input => {
-                const cell = row.insertCell();
-                const inputElement = document.createElement("input");
-                inputElement.type = input.type;
-                inputElement.value = element[input.property];
-                inputElement.oninput = (event) => {
-                    element[input.property] = input.parseFunc(event.target.value);
-                    input.onchangeFunc && input.onchangeFunc(element, inputElement);
-                };
-                cell.appendChild(inputElement);
-            });
-        };	
+			inputs.forEach(input => {
+				const cell = row.insertCell();
+				const inputElement = document.createElement("input");
+				inputElement.type = input.type;
+				inputElement.value = element[input.property];
+				inputElement.oninput = (event) => {
+					element[input.property] = input.parseFunc(event.target.value);
+					input.onchangeFunc && input.onchangeFunc(element, inputElement);
+				};
+				cell.appendChild(inputElement);
+			});
+
+			// Agregar botón de eliminar registro
+			const deleteCell = row.insertCell();
+			const deleteButton = document.createElement("button");
+			deleteButton.textContent = "Eliminar";
+			deleteButton.onclick = () => {
+				// Lógica para eliminar el registro según el ID
+				// Por ejemplo, para empleados:
+				empleados.splice(id, 1); // Eliminar el empleado del arreglo
+				table.deleteRow(row.rowIndex); // Eliminar la fila de la tabla
+				calcularSalarioPromedio(); // Volver a calcular el salario promedio
+			};
+			deleteCell.appendChild(deleteButton);
+		};	
 
 		const calcularSalarios = (empleado, inputElement) => {
 			const diasMes = parseFloat(document.getElementById("diasMes").value);
@@ -396,7 +416,34 @@
 
 
         };
+		const addElementToGastosOperativosTable = (element, id, inputs) => {
+			const table = document.getElementById("gastosTabla");
+			const row = table.insertRow();
 
+			inputs.forEach(input => {
+				const cell = row.insertCell();
+				const inputElement = document.createElement("input");
+				inputElement.type = input.type;
+				inputElement.value = element[input.property];
+				inputElement.oninput = (event) => {
+					element[input.property] = input.parseFunc(event.target.value);
+					input.onchangeFunc && input.onchangeFunc(element, inputElement);
+				};
+				cell.appendChild(inputElement);
+			});
+
+			// Agregar botón de eliminar registro
+			const deleteCell = row.insertCell();
+			const deleteButton = document.createElement("button");
+			deleteButton.textContent = "Eliminar";
+			deleteButton.onclick = () => {
+				// Lógica para eliminar el registro según el ID
+				gastos.splice(id, 1); // Eliminar el gasto del arreglo
+				table.deleteRow(row.rowIndex); // Eliminar la fila de la tabla
+				calcularTotalGastos(); // Volver a calcular el total de gastos
+			};
+			deleteCell.appendChild(deleteButton);
+		};
 		const agregarGasto = () => {
 			const gastoId = gastos.length;
 			const gasto = { nombre: `Gasto ${gastoId + 1}`, valor: 0, valorDiario: 0, valorPorHora: 0 };
@@ -436,36 +483,46 @@
 
 		const agregarGastoPorDesgaste = () => {
 			const desgasteId = desgastes.length;
-			const nuevoDesgaste  = { nombre: `Elemento ${desgasteId + 1}`, valor: 0, vidaUtil: 0, desgasteAnual: 0, desgasteHora: 0 };
+			const nuevoDesgaste = { nombre: `Elemento ${desgasteId + 1}`, valor: 0, vidaUtil: 0, desgasteAnual: 0, desgasteHora: 0 };
 			desgastes.push(nuevoDesgaste);
-			
+
+			addElementToGastosDesgasteTable(nuevoDesgaste, desgasteId, [
+				{ property: "nombre", type: "text", parseFunc: String },
+				{ property: "valor", type: "number", parseFunc: parseFloat, onchangeFunc: calcularDesgaste },
+				{ property: "vidaUtil", type: "number", parseFunc: parseFloat, onchangeFunc: calcularDesgaste },
+				{ property: "desgasteAnual", type: "number", parseFunc: parseFloat },
+				{ property: "desgasteHora", type: "number", parseFunc: parseFloat },
+			]);
+			calcularTotalGastoDesgasteAnual();
+		};
+		const addElementToGastosDesgasteTable = (element, id, inputs) => {
 			const table = document.getElementById("gastosDesgasteTabla");
 			const row = table.insertRow();
 
-			const inputs = [
-				{ property: "nombre", type: "text", parseFunc: String },
-				{ property: "valor", type: "number", parseFunc: parseFloat,onchangeFunc: calcularDesgaste},
-				{ property: "vidaUtil", type: "number", parseFunc: parseFloat,onchangeFunc: calcularDesgaste},
-				{ property: "desgasteAnual", type: "number", parseFunc: parseFloat },
-				{ property: "desgasteHora", type: "number", parseFunc: parseFloat },
-			];
-			
-			
 			inputs.forEach(input => {
 				const cell = row.insertCell();
 				const inputElement = document.createElement("input");
 				inputElement.type = input.type;
-				inputElement.value = nuevoDesgaste[input.property];
+				inputElement.value = element[input.property];
 				inputElement.oninput = (event) => {
-					nuevoDesgaste[input.property] = input.parseFunc(event.target.value);
-					input.onchangeFunc && input.onchangeFunc(nuevoDesgaste, ...inputs.map(inp => inp !== input ? row.cells[inputs.indexOf(inp)].firstChild : inputElement));
+					element[input.property] = input.parseFunc(event.target.value);
+					input.onchangeFunc && input.onchangeFunc(element, ...inputs.map(inp => inp !== input ? row.cells[inputs.indexOf(inp)].firstChild : inputElement));
 				};
 				cell.appendChild(inputElement);
-				
-			});	
-			
-			calcularTotalGastoDesgasteAnual();
-		};		
+			});
+
+			// Agregar botón de eliminar registro
+			const deleteCell = row.insertCell();
+			const deleteButton = document.createElement("button");
+			deleteButton.textContent = "Eliminar";
+			deleteButton.onclick = () => {
+				// Lógica para eliminar el registro según el ID
+				desgastes.splice(id, 1); // Eliminar el gasto por desgaste del arreglo
+				table.deleteRow(row.rowIndex); // Eliminar la fila de la tabla
+				calcularTotalGastoDesgasteAnual(); // Volver a calcular el total de gastos por desgaste anual
+			};
+			deleteCell.appendChild(deleteButton);
+		};			
 		const calcularDesgaste = (nuevoDesgaste, inputElement) => {
 				const horasDia = parseFloat(document.getElementById("horasDia").value);
 				nuevoDesgaste.desgasteAnual = nuevoDesgaste.valor / nuevoDesgaste.vidaUtil ;
@@ -490,34 +547,45 @@
 				totalGastoDesgasteAnualDiv.innerHTML = `Total Desgaste Anual: ${COPE.format(totalGastoDesgasteAnual)}`;
 			}
 		
-
-		const agregarMaterial = () => {
-			const materialId = materiales.length;
-			const material = { nombre: `Material ${materialId + 1}`, costo: 0, cantidad: 0 };
-			materiales.push(material);
-
+		const addElementToMaterialesTable = (element, id, inputs) => {
 			const table = document.getElementById("materialesTabla");
 			const row = table.insertRow();
-
-			const inputs = [
-				{ property: "nombre", type: "text", parseFunc: String },
-				{ property: "costo", type: "number", parseFunc: parseFloat, onchangeFunc: calcularCostoTotal},
-				{ property: "cantidad", type: "number", parseFunc: parseFloat,onchangeFunc: calcularCostoTotal},
-				{ property: "costoTotal", type: "number", parseFunc: parseFloat }, // Nuevo campo para el costo total
-			];
 
 			inputs.forEach(input => {
 				const cell = row.insertCell();
 				const inputElement = document.createElement("input");
 				inputElement.type = input.type;
-				inputElement.value = material[input.property];
+				inputElement.value = element[input.property];
 				inputElement.oninput = (event) => {
-					material[input.property] = input.parseFunc(event.target.value);
-					input.onchangeFunc && input.onchangeFunc(material, ...inputs.map(inp => inp !== input ? row.cells[inputs.indexOf(inp)].firstChild : inputElement));
+					element[input.property] = input.parseFunc(event.target.value);
+					input.onchangeFunc && input.onchangeFunc(element, ...inputs.map(inp => inp !== input ? row.cells[inputs.indexOf(inp)].firstChild : inputElement));
 				};
 				cell.appendChild(inputElement);
-				
 			});
+
+			// Agregar botón de eliminar registro
+			const deleteCell = row.insertCell();
+			const deleteButton = document.createElement("button");
+			deleteButton.textContent = "Eliminar";
+			deleteButton.onclick = () => {
+				// Lógica para eliminar el registro según el ID
+				materiales.splice(id, 1); // Eliminar el material del arreglo
+				table.deleteRow(row.rowIndex); // Eliminar la fila de la tabla
+				calcularTotalCostoMateriales(); // Volver a calcular el total de costo de materiales
+			};
+			deleteCell.appendChild(deleteButton);
+		};
+		const agregarMaterial = () => {
+			const materialId = materiales.length;
+			const material = { nombre: `Material ${materialId + 1}`, costo: 0, cantidad: 0 };
+			materiales.push(material);
+
+			addElementToMaterialesTable(material, materialId, [
+				{ property: "nombre", type: "text", parseFunc: String },
+				{ property: "costo", type: "number", parseFunc: parseFloat, onchangeFunc: calcularCostoTotal },
+				{ property: "cantidad", type: "number", parseFunc: parseFloat, onchangeFunc: calcularCostoTotal },
+				{ property: "costoTotal", type: "number", parseFunc: parseFloat },
+			]);
 			calcularTotalCostoMateriales();
 		};
 		const calcularCostoTotal = (material, costoElement, cantidadElement) => {
