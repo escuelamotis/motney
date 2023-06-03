@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+    <title>COSTEADOR DE PRODUCTOS - ESCUELA MOTIS</title>
+<style>
+    /* Estilos generales */
+    body {
+        padding: 10px;
+        font-family: 'Righteous';
+        background-color:#80539d;
+        background-size: 20%;
+        background-repeat: repeat;
+    }
+      /* Estilo para el logo */
+        #logo {
+            position: static; 	
+			display: block;
+            margin: 0 auto;
+            width: 300px; /* Ajusta el tamaño del logo según tus necesidades */
+            height: 150px;
+		
+        }
+		#logoEscuela {
+            position: static; 	
+			display: block;
+            margin: 0 auto;
+            width: 300px; /* Ajusta el tamaño del logo según tus necesidades */
+            height: 300px;
+		
+        }
+		.redes-sociales {
+        text-align: center;
+        margin-top: 10px;
+    }
+	  .redes-sociales a {
+        margin-right: 20px;
+    }
+
+
+    .aviso-privacidad {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+    }
+	
+    .seccion {
+        padding: 20px;
+        border: 1px solid #cccccc;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        background-color: #ffffff;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+	 .seccion h2, h1 {
+        font-weight: normal;
+    }
+	
+
+    label {
+        display: inline-block;
+        width: 200px;
+        color: #333333;
+		
+    }
+    input, select {
+        display: inline-block;
+        width: 50%;
+        padding: 5px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #cccccc;
+    }
+
+    button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #fe5eb6;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #febbe4;
+    }
+
+    button#calcular-btn {
+        background-color: #3b007e; /* Personaliza el color de fondo según tus preferencias */
+    }
+
+    button#calcular-btn:hover {
+        background-color: #6d009b; /* Personaliza el color de fondo en el estado hover */
+    }
+
+    table {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        background-color: #f2f2f2;  /* Fondo de color claro para la tabla */
+    }
+
+    td, th {
+        padding: 10px;
+        border: 1px solid #cccccc;
+        text-align: left;
+    }
+
+    th {
+        text-align: left;
+        background-color: #e6e6e6;  /* Fondo de color un poco más oscuro para los encabezados de las columnas */
+        color: #333333;
+		font-weight: normal;
+
+    }
+
+    #titulo-app {
+        text-align: center;
+        font-family: 'Titan One', cursive;
+    }
+
+    .titulo-flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .titulo-flex-container h2 {
+        margin: 0;
+    }
+
+    #salario-promedio {
+        font-size: 1.25em;
+        color: #333333;
+    }
+
+    /* Estilos para pantallas pequeñas (móviles) */
+    @media (max-width: 600px) {
+        .seccion {
+            width: 100%;
+        }
+    }
+
+    /* Estilos para pantallas medianas y grandes (tablets, laptops, escritorio) */
+    @media (min-width: 601px) {
+        #contenedor {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        #columna-izquierda {
+            grid-row: 1 / 3;
+        }
+
+        #secciones-superiores {
+            order: 1;
+        }
+
+        #seccion4 {
+            order: 2;
+        }
+
+        #columna-derecha {
+            grid-row: 1 / 2;
+            grid-column: 2 / 3;
+        }
+
+        .seccion {
+            width: calc(100% - 20px);
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+    }
+	
+</style>
+</head>
+<body>
+<img id="logo" src="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI" alt="Logo Montney">
+<h1 id="titulo-app"></h1>
+
+<div id="contenedor">
+    <div id="columna-izquierda">
+		<div id="secciones-superiores">
+			<div class="seccion" id="seccion1" title="&#11088; Define el margen de utilidad según el tipo de clientes, el grado de dificultad de tus manualidades y la originalidad.">
+				<h2><span class="icon">&#9881;&#65039;</span>Información General</h2>
+				<label for="margenUtilidad">Margen de Utilidad %</label>
+				<input type="number" id="margenUtilidad" min="0" step="0.01"><br>
+				<label for="diasMes">Días de trabajo mensual #</label>
+				<input type="number" id="diasMes" min="0"><br>
+				<label for="horasDia">Horas que trabaja al día #</label>
+				<input type="number" id="horasDia" min="0">
+			</div>
+				<div class="seccion" id="seccion2" title="⭐Nunca olvides que la mano de obra no es lo mismo que la utilidad, por eso se calcula de manera independiente. 
+⭐Define cuál va a ser tu salario mensual y ten claro cuál es el salario mensual  de tus colaboradores así  trabajen por servicios">
+					 <div class="titulo-flex-container">
+					<h2><span class="icon">&#128119;&#8205;&#9792;&#65039;</span>Empleados</h2>
+				<div id="salario-promedio"></div>
+				</div>				
+					<table id="empleadosTabla">
+					<tr>
+						<th>Empleado</th>
+						<th>Salario Mensual $</th>
+						<th>Salario Diario $</th>
+						<th>Salario por Hora $</th>
+					</tr>
+					<!-- Los empleados se agregarán aquí -->
+				</table>
+				<button onclick="agregarEmpleado()">Agregar Empleado</button>
+								
+			</div>
+		   <div class="seccion" id="seccion3" title="⭐Los gastos operativos son los costos que una empresa debe pagar independientemente de si se realiza o no una venta. Esto se debe a que estos gastos son necesarios para mantener la operación diaria de la empresa y no están directamente relacionados con las ventas. Por eso, se consideran gastos fijos y deben ser cubiertos con el fin de mantener la continuidad del negocio.">
+				<div class="titulo-flex-container">
+				<h2><span class="icon">&#127981;</span>Gastos Operativos</h2>
+					<div id="total-gastos"></div>
+				</div>
+				<table id="gastosTabla">
+					<tr>
+						<th>Nombre del gasto</th>
+						<th>Valor mensual $</th>
+						<th>Valor diario $</th>
+						<th>Valor por hora $</th>
+					</tr>
+					<!-- Los gastos se agregarán aquí -->
+				</table>
+				<button onclick="agregarGasto()">Agregar Gasto</button>
+				
+			</div>
+		</div>
+		<div class="seccion" id="seccion4" title="⭐Las maquinas se deprecian, es decir, con el pasar del tiempo, pierden valor y comienzan a necesitar  cambios o mantenimientos. Por eso, es necesario tener un fondo independiente y  es algo que debes cobrar en tus regalos. ">
+               
+				<div class="titulo-flex-container">
+					<h2><span class="icon">&#128424;&#65039;</span>Gasto por desgaste</h2>
+					<div id="totalGastoDesgasteAnual"></div>
+				</div>
+                    <table id="gastosDesgasteTabla">
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Valor $</th>
+                            <th>Vida Útil (Años) #</th>
+                            <th>Desgaste Anual #</th>
+                            <th>Desgaste Hora #</th>
+                        </tr>
+                        <!-- Los gastos por desgaste se agregarán aquí -->
+                    </table>
+                    <button onclick="agregarGastoPorDesgaste()">Agregar Gasto por Desgaste</button>
+        </div>
+		<div class="seccion" id="seccion5" title="⭐No olvides tener en cuenta esos materiales que pueden pasar desapercibidos como porta bombas, silicona, papeles etc. ">
+					
+				<div class="titulo-flex-container">
+					<h2><span class="icon">&#127880;</span>Materiales e Insumos</h2>
+					<div id="total-costo-materiales"></div>
+				</div>
+				<table id="materialesTabla">
+				<tr>
+					<th>Material e Insumo</th>
+					<th>Costo Unitario $</th>
+					<th>Cantidad #</th>
+					<th>Costo Total $</th> <!-- Nueva columna para el costo total -->
+
+				</tr>
+					<!-- Los materiales se agregarán aquí -->
+				</table>
+				 <button onclick="agregarMaterial()">Agregar Material</button>
+		</div>
+		 
+	</div>
+		<div id="columna-derecha">
+			<div id="detalles" class="seccion">
+				<h2><span class="icon">&#127873;</span> Detalle del Producto</h2>
+				<label for="nombreRegalo">Nombre del regalo:</label>
+				<input type="text" id="nombreRegalo"><br>
+				<label for="horasElaboracion">Horas de elaboración #</label>
+				<input type="number" id="horasElaboracion" min="0" step="0.01"><br>
+				<label for="empleadoProducto">Empleado que hará el producto</label>
+				<select id="empleadoProducto"></select><br>
+				<span class="icon">&#128757;</span><label for="valorDomicilio">Valor del Domicilio $</label>
+				<input type="number" id="valorDomicilio" min="0" step="1"><br><br>
+				<button id="calcular-btn" onclick="calcular()">Calcular Costos y Precios</button><br><br>
+				<div id="resultado" class="seccion"></div>
+			</div>
+		</div>
+</div>
+
+    <script>
+		const empleados = [];
+        const gastos = [];
+        const materiales = [];
+		const desgastes = [];
+		let COPE = new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: 'COP',
+			minimumFractionDigits: 0
+
+		});
+
+        const addElementToTable = (tableId, element, id, inputs) => {
+            const table = document.getElementById(tableId);
+            const row = table.insertRow();
+
+            inputs.forEach(input => {
+                const cell = row.insertCell();
+                const inputElement = document.createElement("input");
+                inputElement.type = input.type;
+                inputElement.value = element[input.property];
+                inputElement.oninput = (event) => {
+                    element[input.property] = input.parseFunc(event.target.value);
+                    input.onchangeFunc && input.onchangeFunc(element, inputElement);
+                };
+                cell.appendChild(inputElement);
+            });
+        };	
+
+		const calcularSalarios = (empleado, inputElement) => {
+			const diasMes = parseFloat(document.getElementById("diasMes").value);
+			const horasDia = parseFloat(document.getElementById("horasDia").value);
+			empleado.salarioDiario = empleado.salario / diasMes;
+			empleado.salarioPorHora = empleado.salarioDiario / horasDia;	
+			
+			
+			
+			// Actualizar los campos de salario diario y por hora
+			const row = inputElement.parentElement.parentElement;
+			row.cells[2].firstChild.value = Math.floor(empleado.salarioDiario);
+			row.cells[3].firstChild.value = Math.floor(empleado.salarioPorHora);
+		    calcularSalarioPromedio();
+		};
+			document.getElementById("diasMes").oninput = (event) => {
+				for (let i = 0; i < empleados.length; i++) {
+					calcularSalarios(empleados[i], document.getElementById("empleadosTabla").rows[i + 1].cells[1].firstChild);
+				}
+				for (let i = 0; i < gastos.length; i++) {
+					calcularGastos(gastos[i], document.getElementById("gastosTabla").rows[i + 1].cells[1].firstChild);
+				}
+			};
+
+			document.getElementById("horasDia").oninput = (event) => {
+				for (let i = 0; i < empleados.length; i++) {
+					calcularSalarios(empleados[i], document.getElementById("empleadosTabla").rows[i + 1].cells[1].firstChild);
+				}
+				for (let i = 0; i < gastos.length; i++) {
+					calcularGastos(gastos[i], document.getElementById("gastosTabla").rows[i + 1].cells[1].firstChild);
+				}
+			};
+
+		 function calcularSalarioPromedio() {
+				let totalSalario = 0;
+				for (let empleado of empleados) {
+					totalSalario += empleado.salario;
+				}
+		
+				let salarioPromedio = totalSalario / empleados.length;
+				
+				const salarioPromedioDiv = document.getElementById("salario-promedio");
+				salarioPromedioDiv.innerHTML = `Salario Promedio: ${COPE.format(salarioPromedio)}`;
+			}
+
+        const agregarEmpleado = () => {
+            const empleadoId = empleados.length;
+            const empleado = {
+                nombre: `Empleado ${empleadoId + 1}`, 
+                salario: 0, 
+                salarioDiario: 0, 
+                salarioPorHora: 0
+            };
+            empleados.push(empleado);
+
+            addElementToTable("empleadosTabla", empleado, empleadoId, [
+                { property: "nombre", type: "text", parseFunc: String },
+                { 
+                    property: "salario", 
+                    type: "number", 
+                    parseFunc: parseFloat,
+                    onchangeFunc: calcularSalarios
+                },
+                { property: "salarioDiario", type: "number", parseFunc: parseFloat },
+                { property: "salarioPorHora", type: "number", parseFunc: parseFloat },
+            ]);
+			const selectEmpleadoProducto = document.getElementById("empleadoProducto");
+			const option = document.createElement("option");
+			option.text = empleado.nombre
+
+			option.value = empleadoId;
+			selectEmpleadoProducto.add(option);
+        calcularSalarioPromedio();
+
+
+        };
+
+		const agregarGasto = () => {
+			const gastoId = gastos.length;
+			const gasto = { nombre: `Gasto ${gastoId + 1}`, valor: 0, valorDiario: 0, valorPorHora: 0 };
+			gastos.push(gasto);
+
+			addElementToTable("gastosTabla", gasto, gastoId, [
+				{ property: "nombre", type: "text", parseFunc: String },
+				{ property: "valor", type: "number", parseFunc: parseFloat, onchangeFunc: calcularGastos},
+				{ property: "valorDiario", type: "number", parseFunc: parseFloat },
+				{ property: "valorPorHora", type: "number", parseFunc: parseFloat },
+			]);
+			calcularTotalGastos();
+		};
+		const calcularGastos = (gasto, inputElement) => {
+				const diasMes = parseFloat(document.getElementById("diasMes").value);
+				const horasDia = parseFloat(document.getElementById("horasDia").value);
+
+				gasto.valorDiario = gasto.valor / diasMes;
+				gasto.valorPorHora = gasto.valorDiario / horasDia;
+
+				// Actualizar los campos de valor diario y por hora
+				const row = inputElement.parentElement.parentElement;
+				row.cells[2].firstChild.value = Math.floor(gasto.valorDiario);
+				row.cells[3].firstChild.value = Math.floor(gasto.valorPorHora);
+				// Calcular y mostrar el total de gastos
+				calcularTotalGastos();
+			};
+		function calcularTotalGastos() {
+			let totalGastos = 0;
+			for (let gasto of gastos) {
+				totalGastos += gasto.valor;
+			}
+	
+			const totalGastosDiv = document.getElementById("total-gastos");
+			totalGastosDiv.innerHTML = `Total Gastos Mensuales: ${COPE.format(totalGastos)}`;
+		}
+
+		const agregarGastoPorDesgaste = () => {
+			const desgasteId = desgastes.length;
+			const nuevoDesgaste  = { nombre: `Elemento ${desgasteId + 1}`, valor: 0, vidaUtil: 0, desgasteAnual: 0, desgasteHora: 0 };
+			desgastes.push(nuevoDesgaste);
+			
+			const table = document.getElementById("gastosDesgasteTabla");
+			const row = table.insertRow();
+
+			const inputs = [
+				{ property: "nombre", type: "text", parseFunc: String },
+				{ property: "valor", type: "number", parseFunc: parseFloat,onchangeFunc: calcularDesgaste},
+				{ property: "vidaUtil", type: "number", parseFunc: parseFloat,onchangeFunc: calcularDesgaste},
+				{ property: "desgasteAnual", type: "number", parseFunc: parseFloat },
+				{ property: "desgasteHora", type: "number", parseFunc: parseFloat },
+			];
+			
+			
+			inputs.forEach(input => {
+				const cell = row.insertCell();
+				const inputElement = document.createElement("input");
+				inputElement.type = input.type;
+				inputElement.value = nuevoDesgaste[input.property];
+				inputElement.oninput = (event) => {
+					nuevoDesgaste[input.property] = input.parseFunc(event.target.value);
+					input.onchangeFunc && input.onchangeFunc(nuevoDesgaste, ...inputs.map(inp => inp !== input ? row.cells[inputs.indexOf(inp)].firstChild : inputElement));
+				};
+				cell.appendChild(inputElement);
+				
+			});	
+			
+			calcularTotalGastoDesgasteAnual();
+		};		
+		const calcularDesgaste = (nuevoDesgaste, inputElement) => {
+				const horasDia = parseFloat(document.getElementById("horasDia").value);
+				nuevoDesgaste.desgasteAnual = nuevoDesgaste.valor / nuevoDesgaste.vidaUtil ;
+				nuevoDesgaste.desgasteHora = (nuevoDesgaste.desgasteAnual / 365)/ horasDia;
+
+
+				// Actualizar los campos 
+				const row = inputElement.parentElement.parentElement;
+				row.cells[3].firstChild.value = Math.floor(nuevoDesgaste.desgasteAnual);
+				row.cells[4].firstChild.value = Math.floor(nuevoDesgaste.desgasteHora);
+				
+				// Calcular y mostrar el total de gastos
+				calcularTotalGastoDesgasteAnual();
+			};
+		function calcularTotalGastoDesgasteAnual() {
+				let totalGastoDesgasteAnual = 0;
+				for (let nuevoDesgaste of desgastes) {
+					totalGastoDesgasteAnual += nuevoDesgaste.desgasteAnual;
+				}
+
+				const totalGastoDesgasteAnualDiv = document.getElementById("totalGastoDesgasteAnual");
+				totalGastoDesgasteAnualDiv.innerHTML = `Total Desgaste Anual: ${COPE.format(totalGastoDesgasteAnual)}`;
+			}
+		
+
+		const agregarMaterial = () => {
+			const materialId = materiales.length;
+			const material = { nombre: `Material ${materialId + 1}`, costo: 0, cantidad: 0 };
+			materiales.push(material);
+
+			const table = document.getElementById("materialesTabla");
+			const row = table.insertRow();
+
+			const inputs = [
+				{ property: "nombre", type: "text", parseFunc: String },
+				{ property: "costo", type: "number", parseFunc: parseFloat, onchangeFunc: calcularCostoTotal},
+				{ property: "cantidad", type: "number", parseFunc: parseFloat,onchangeFunc: calcularCostoTotal},
+				{ property: "costoTotal", type: "number", parseFunc: parseFloat }, // Nuevo campo para el costo total
+			];
+
+			inputs.forEach(input => {
+				const cell = row.insertCell();
+				const inputElement = document.createElement("input");
+				inputElement.type = input.type;
+				inputElement.value = material[input.property];
+				inputElement.oninput = (event) => {
+					material[input.property] = input.parseFunc(event.target.value);
+					input.onchangeFunc && input.onchangeFunc(material, ...inputs.map(inp => inp !== input ? row.cells[inputs.indexOf(inp)].firstChild : inputElement));
+				};
+				cell.appendChild(inputElement);
+				
+			});
+			calcularTotalCostoMateriales();
+		};
+		const calcularCostoTotal = (material, costoElement, cantidadElement) => {
+            const costoTotal = material.costo * material.cantidad;
+
+            // Actualizar el campo de costo total
+            const row = costoElement.parentElement.parentElement;
+            row.cells[3].firstChild.value = Math.floor(costoTotal);
+
+            calcularTotalCostoMateriales();
+        };
+		 function calcularTotalCostoMateriales() {
+            let totalCostoMateriales = 0;
+            for (let material of materiales) {
+                totalCostoMateriales += material.costo * material.cantidad;
+            }
+
+            const totalCostoMaterialesDiv = document.getElementById("total-costo-materiales");
+            totalCostoMaterialesDiv.innerHTML = `Total Costo de Materiales: ${COPE.format(totalCostoMateriales)}`;
+        }
+		
+		
+		           
+		function calcular() {
+            
+			
+			const margenUtilidad = parseFloat(document.getElementById("margenUtilidad").value) / 100;
+            const diasMes = parseFloat(document.getElementById("diasMes").value);
+            const horasDia = parseFloat(document.getElementById("horasDia").value);
+			var nombreRegalo = document.getElementById("nombreRegalo").value;
+			const valorDomicilio = parseFloat(document.getElementById("valorDomicilio").value);
+			const horasElaboracion = parseFloat(document.getElementById("horasElaboracion").value);
+
+
+			//Validaciones de entrada
+			if(nombreRegalo.length == 0) {
+				nombreRegalo="&#9888;&#65039; Ingresa el Nombre del regalo"
+			}
+			if (isNaN(margenUtilidad) || margenUtilidad <= 0) {
+				alert("El valor ingresado en 'Margen de Utilidad (%)' debe ser un número positivo.");
+				return false;
+			}
+			if (isNaN(diasMes) || diasMes <= 0) {
+				alert("El valor ingresado en 'Días al mes que se trabaja' debe ser un número positivo.");
+				return false;
+			}
+			if (isNaN(horasDia) || horasDia <= 0) {
+				alert("El valor ingresado en 'Horas que trabaja al día' debe ser un número positivo.");
+				return false;
+			}
+		
+			if (isNaN(horasElaboracion) || horasElaboracion <= 0) {
+				alert("El valor ingresado en 'Horas de elaboración del producto' debe ser un número positivo.");
+				return false;
+			}
+			
+			
+			const totalHorasMes = diasMes * horasDia;
+
+            let totalSalarios = 0;
+            for (let empleado of empleados) {
+                totalSalarios += empleado.salario;
+            }
+
+            let totalGastos = 0;
+            for (let gasto of gastos) {
+                totalGastos += gasto.valor;
+            }
+
+            let costoMateriales = 0;
+            for (let material of materiales) {
+                costoMateriales += material.costo * material.cantidad;
+            }
+			let totalDesgaste = 0;
+				for (let nuevoDesgaste of desgastes) {
+					totalDesgaste += nuevoDesgaste.desgasteHora;
+			}
+
+            const empleadoId = parseInt(document.getElementById("empleadoProducto").value);
+            const salarioPorHora = empleados[empleadoId].salario / (diasMes * horasDia);
+			const costoManoDeObra = salarioPorHora * horasElaboracion;
+			const costoGastosPorHora = totalGastos / (diasMes * horasDia);
+			const totalGastosRegalo = costoGastosPorHora *horasElaboracion;
+			const costoDesgaste = totalDesgaste * horasElaboracion;
+
+
+            const costoTotal = costoManoDeObra + costoMateriales + costoGastosPorHora ;
+            const utilidad = costoTotal * margenUtilidad;
+            const precioSinDomicilio = costoTotal + utilidad;
+            const precioConDomicilio = precioSinDomicilio + valorDomicilio;
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = `
+                <p><h3><span class="icon">&#128176;</span><span class="icon">&#128640;</span>Nombre del regalo: ${nombreRegalo}</h3></p>
+				<p>Costo de Mano de Obra: ${COPE.format(costoManoDeObra)}</p>
+				<p>Gastos Operativos: ${COPE.format(costoGastosPorHora)}</p>
+				<p>Gastos por desgaste: ${COPE.format(costoDesgaste)}</p>
+				<p>Costo de Materiales: ${COPE.format(costoMateriales)}</p>
+				<p>_____________</p>
+				<p>Total Costos: ${COPE.format(costoTotal)}</p>
+				<p>Utilidad: ${COPE.format(utilidad)}</p>
+				<p>_____________</p>
+				<p>Precio sugerido (sin domicilio): ${COPE.format(precioSinDomicilio)}</p>
+				<p>Precio sugerido (con domicilio): ${COPE.format(precioConDomicilio)}</p>`;
+        } 
+		
+		
+		agregarEmpleado(); // Agrega un empleado inicial para evitar un select vacío
+        agregarGasto(); // Agrega un gasto inicial
+        agregarMaterial(); // Agrega un material inicial  
+		agregarGastoPorDesgaste(); // Agrega asto por desgaste inicial. 
+		
+    </script>
+	
+	<div class="redes-sociales">
+		<a href="https://www.facebook.com/profile.php?id=100083080994547" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook" width="30" height="30"></a>
+		<a href="https://www.instagram.com/escuela_motis" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" height="30"></a>
+		<a href="https://www.youtube.com/@escuelamotis696" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="Youtube" width="30" height="30"></a>
+		<a href="https://www.tiktok.com/@escuelamotis" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/TikTok.png" alt="Youtube" width="30" height="40"></a>
+
+	</div>
+
+<!-- Aviso de privacidad -->
+		<div class="aviso-privacidad">
+			<p>Producto de uso personal, prohibida su venta y distribución</p>
+		</div>
+		<img id="logoEscuela" src="https://drive.google.com/uc?export=view&id=1kT1ZFfupay0Vu1tm71x-YVlU3z8kBgT4" alt="Escuela Motis">
+		</body>
+
+</html>
