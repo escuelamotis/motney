@@ -213,7 +213,7 @@
 						<th>Salario Mensual $</th>
 						<th>Salario Diario $</th>
 						<th>Salario por Hora $</th>
-						<th>Acciones</th> <!-- Nueva columna para los botones de eliminar registros -->
+						<th></th> <!-- Nueva columna para los botones de eliminar registros -->
 
 					</tr>
 					<!-- Los empleados se agregarán aquí -->
@@ -232,7 +232,7 @@
 						<th>Valor mensual $</th>
 						<th>Valor diario $</th>
 						<th>Valor por hora $</th>
-						<th>Acciones</th> <!-- Nueva columna para los botones de eliminar registros -->
+						<th></th> <!-- Nueva columna para los botones de eliminar registros -->
 
 					</tr>
 					<!-- Los gastos se agregarán aquí -->
@@ -254,7 +254,7 @@
                             <th>Vida Útil (Años) #</th>
                             <th>Desgaste Anual #</th>
                             <th>Desgaste Hora #</th>
-							<th>Acciones</th> <!-- Nueva columna para los botones de eliminar registros -->
+							<th></th> <!-- Nueva columna para los botones de eliminar registros -->
 
                         </tr>
                         <!-- Los gastos por desgaste se agregarán aquí -->
@@ -273,7 +273,7 @@
 					<th>Costo Unitario $</th>
 					<th>Cantidad #</th>
 					<th>Costo Total $</th> <!-- Nueva columna para el costo total -->
-					<th>Acciones</th> <!-- Nueva columna para los botones de eliminar registros -->
+					<th></th> <!-- Nueva columna para los botones de eliminar registros -->
 
 				</tr>
 					<!-- Los materiales se agregarán aquí -->
@@ -330,7 +330,8 @@
 			// Agregar botón de eliminar registro
 			const deleteCell = row.insertCell();
 			const deleteButton = document.createElement("button");
-			deleteButton.textContent = "Eliminar";
+			deleteButton.innerHTML = "&#10060;";
+			deleteButton.style.background = "transparent"; 
 			deleteButton.onclick = () => {
 				// Lógica para eliminar el registro según el ID
 				// Por ejemplo, para empleados:
@@ -435,7 +436,8 @@
 			// Agregar botón de eliminar registro
 			const deleteCell = row.insertCell();
 			const deleteButton = document.createElement("button");
-			deleteButton.textContent = "Eliminar";
+			deleteButton.innerHTML = "&#10060;";
+			deleteButton.style.background = "transparent"; 
 			deleteButton.onclick = () => {
 				// Lógica para eliminar el registro según el ID
 				gastos.splice(id, 1); // Eliminar el gasto del arreglo
@@ -514,7 +516,8 @@
 			// Agregar botón de eliminar registro
 			const deleteCell = row.insertCell();
 			const deleteButton = document.createElement("button");
-			deleteButton.textContent = "Eliminar";
+			deleteButton.innerHTML = "&#10060;";
+			deleteButton.style.background = "transparent"; 
 			deleteButton.onclick = () => {
 				// Lógica para eliminar el registro según el ID
 				desgastes.splice(id, 1); // Eliminar el gasto por desgaste del arreglo
@@ -566,7 +569,8 @@
 			// Agregar botón de eliminar registro
 			const deleteCell = row.insertCell();
 			const deleteButton = document.createElement("button");
-			deleteButton.textContent = "Eliminar";
+			deleteButton.innerHTML = "&#10060;";
+			deleteButton.style.background = "transparent"; 
 			deleteButton.onclick = () => {
 				// Lógica para eliminar el registro según el ID
 				materiales.splice(id, 1); // Eliminar el material del arreglo
