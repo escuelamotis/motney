@@ -355,8 +355,8 @@
 			
 			// Actualizar los campos de salario diario y por hora
 			const row = inputElement.parentElement.parentElement;
-			row.cells[2].firstChild.value = Math.floor(empleado.salarioDiario);
-			row.cells[3].firstChild.value = Math.floor(empleado.salarioPorHora);
+			row.cells[2].firstChild.value = empleado.salarioDiario;
+			row.cells[3].firstChild.value = empleado.salarioPorHora;
 		    calcularSalarioPromedio();
 		};
 			document.getElementById("diasMes").oninput = (event) => {
@@ -471,8 +471,8 @@
 
 				// Actualizar los campos de valor diario y por hora
 				const row = inputElement.parentElement.parentElement;
-				row.cells[2].firstChild.value = Math.floor(gasto.valorDiario);
-				row.cells[3].firstChild.value = Math.floor(gasto.valorPorHora);
+				row.cells[2].firstChild.value = gasto.valorDiario;
+				row.cells[3].firstChild.value = gasto.valorPorHora;
 				// Calcular y mostrar el total de gastos
 				calcularTotalGastos();
 			};
@@ -536,8 +536,8 @@
 
 				// Actualizar los campos 
 				const row = inputElement.parentElement.parentElement;
-				row.cells[3].firstChild.value = Math.floor(nuevoDesgaste.desgasteAnual);
-				row.cells[4].firstChild.value = Math.floor(nuevoDesgaste.desgasteHora);
+				row.cells[3].firstChild.value = nuevoDesgaste.desgasteAnual;
+				row.cells[4].firstChild.value = nuevoDesgaste.desgasteHora;
 				
 				// Calcular y mostrar el total de gastos
 				calcularTotalGastoDesgasteAnual();
@@ -599,7 +599,7 @@
 
             // Actualizar el campo de costo total
             const row = costoElement.parentElement.parentElement;
-            row.cells[3].firstChild.value = Math.floor(costoTotal);
+            row.cells[3].firstChild.value = costoTotal;
 
             calcularTotalCostoMateriales();
         };
