@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="MOTNEY">
-	  <meta property="og:description" content="Plantilla de costos (Libras)">
+	  <meta property="og:description" content="Plantilla de costos (Dólares)">
 	  <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI">
 	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
@@ -348,8 +348,8 @@
 		const calcularSalarios = (empleado, inputElement) => {
 			const diasMes = parseFloat(document.getElementById("diasMes").value);
 			const horasDia = parseFloat(document.getElementById("horasDia").value);
-			empleado.salarioDiario = empleado.salario / diasMes;
-			empleado.salarioPorHora = empleado.salarioDiario / horasDia;	
+			empleado.salarioDiario = (empleado.salario / diasMes).toFixed(2);
+			empleado.salarioPorHora = (empleado.salarioDiario / horasDia).toFixed(2);
 			
 			
 			
@@ -466,8 +466,8 @@
 				const diasMes = parseFloat(document.getElementById("diasMes").value);
 				const horasDia = parseFloat(document.getElementById("horasDia").value);
 
-				gasto.valorDiario = gasto.valor / diasMes;
-				gasto.valorPorHora = gasto.valorDiario / horasDia;
+				gasto.valorDiario = (gasto.valor / diasMes).toFixed(2);
+				gasto.valorPorHora = (gasto.valorDiario / horasDia).toFixed(2);
 
 				// Actualizar los campos de valor diario y por hora
 				const row = inputElement.parentElement.parentElement;
@@ -531,9 +531,8 @@
 		};			
 		const calcularDesgaste = (nuevoDesgaste, inputElement) => {
 				const horasDia = parseFloat(document.getElementById("horasDia").value);
-				nuevoDesgaste.desgasteAnual = nuevoDesgaste.valor / nuevoDesgaste.vidaUtil ;
-				nuevoDesgaste.desgasteHora = (nuevoDesgaste.desgasteAnual / 365)/ horasDia;
-
+				nuevoDesgaste.desgasteAnual = (nuevoDesgaste.valor / nuevoDesgaste.vidaUtil).toFixed(2);
+				nuevoDesgaste.desgasteHora = ((nuevoDesgaste.desgasteAnual / 365) / horasDia).toFixed(2);
 
 				// Actualizar los campos 
 				const row = inputElement.parentElement.parentElement;
@@ -596,7 +595,7 @@
 			calcularTotalCostoMateriales();
 		};
 		const calcularCostoTotal = (material, costoElement, cantidadElement) => {
-            const costoTotal = material.costo * material.cantidad;
+		const costoTotal = (material.costo * material.cantidad).toFixed(2);
 
             // Actualizar el campo de costo total
             const row = costoElement.parentElement.parentElement;
