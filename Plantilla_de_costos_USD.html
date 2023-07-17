@@ -532,8 +532,8 @@ body {
 		};			
 		const calcularDesgaste = (nuevoDesgaste, inputElement) => {
 				const horasDia = parseFloat(document.getElementById("horasDia").value);
-				nuevoDesgaste.desgasteAnual = (nuevoDesgaste.valor / nuevoDesgaste.vidaUtil).toFixed(2);
-				nuevoDesgaste.desgasteHora = ((nuevoDesgaste.desgasteAnual / 365) / horasDia).toFixed(2);
+				nuevoDesgaste.desgasteAnual = (nuevoDesgaste.valor / nuevoDesgaste.vidaUtil);
+				nuevoDesgaste.desgasteHora = ((nuevoDesgaste.desgasteAnual / 365) / horasDia);
 
 				// Actualizar los campos 
 				const row = inputElement.parentElement.parentElement;
