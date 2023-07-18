@@ -538,8 +538,8 @@ body {
 
 				// Actualizar los campos 
 				const row = inputElement.parentElement.parentElement;
-				row.cells[3].firstChild.value = Math.floor(nuevoDesgaste.desgasteAnual);
-				row.cells[4].firstChild.value = Math.floor(nuevoDesgaste.desgasteHora);
+				row.cells[3].firstChild.value = nuevoDesgaste.desgasteAnual;
+				row.cells[4].firstChild.value = nuevoDesgaste.desgasteHora;
 				
 				// Calcular y mostrar el total de gastos
 				calcularTotalGastoDesgasteAnual();
