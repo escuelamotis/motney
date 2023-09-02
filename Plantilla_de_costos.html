@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+   <script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="1098108370388-p095aktl01p3nomld4u12njedr0v319b.apps.googleusercontent.com">
+	<meta charset="UTF-8">
     <meta property="og:title" content="MOTNEY">
 	  <meta property="og:description" content="Plantilla de costos">
 	  <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI">		
@@ -190,6 +192,8 @@ body {
 </style>
 </head>
 <body>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 <img id="logo" src="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI" alt="Logo Montney">
 <h1 id="titulo-app"></h1>
 
@@ -304,6 +308,17 @@ body {
 </div>
 
     <script>
+	    function onSignIn(googleUser) {
+    // Obtener el ID token y otros detalles del usuario
+    var id_token = googleUser.getAuthResponse().id_token;
+    
+    // Aquí puedes usar el ID token para acceder a la API de Google Sheets o cualquier otra API de Google
+    // ...
+
+    // Oculta el botón de inicio de sesión y muestra el contenido principal de tu aplicación
+    document.querySelector(".g-signin2").style.display = "none";
+    // Mostrar el contenido principal de tu aplicación...
+}
 		const empleados = [];
         const gastos = [];
         const materiales = [];
