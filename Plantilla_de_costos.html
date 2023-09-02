@@ -193,6 +193,7 @@ body {
 </head>
 <body>
 	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	<button onclick="signOut();">Cerrar sesión</button>
 
 <img id="logo" src="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI" alt="Logo Montney">
 <h1 id="titulo-app"></h1>
@@ -318,6 +319,15 @@ body {
     // Oculta el botón de inicio de sesión y muestra el contenido principal de tu aplicación
     document.querySelector(".g-signin2").style.display = "none";
     // Mostrar el contenido principal de tu aplicación...
+}
+	    function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+        console.log('User signed out.');
+        // Muestra el botón de inicio de sesión y oculta el contenido principal
+        document.querySelector(".g-signin2").style.display = "block";
+        // Ocultar el contenido principal de tu aplicación...
+    });
 }
 		const empleados = [];
         const gastos = [];
