@@ -192,8 +192,8 @@ body {
 </style>
 </head>
 <body>
-	<div class="g-signin2" data-onsuccess="onSignIn"></div>
-
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<div id="tokenDisplay"></div>
 <img id="logo" src="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI" alt="Logo Montney">
 <h1 id="titulo-app"></h1>
 
@@ -308,16 +308,15 @@ body {
 </div>
 
     <script>
+
 	    function onSignIn(googleUser) {
-    // Obtener el ID token y otros detalles del usuario
+    // Obtener el ID token del usuario
     var id_token = googleUser.getAuthResponse().id_token;
     
-    // Aquí puedes usar el ID token para acceder a la API de Google Sheets o cualquier otra API de Google
-    // ...
-
-    // Oculta el botón de inicio de sesión y muestra el contenido principal de tu aplicación
+    // Mostrar el ID token en el elemento HTML
+    document.getElementById('tokenDisplay').innerText = "ID Token: " + id_token;
     document.querySelector(".g-signin2").style.display = "none";
-    // Mostrar el contenido principal de tu aplicación...
+
 }
 	    function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
