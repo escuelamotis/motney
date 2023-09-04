@@ -330,31 +330,6 @@ body {
     });
 }
 
-function guardarEnSheet() {
-    const sheetId = document.getElementById('sheetId').value;
-    const nombreRegalo = document.getElementById('nombreRegalo').value; // Asume que tienes un input con id="nombreRegalo"
-    const costoTotal = /* Código para obtener el costo total */;
-
-    // Usa la API de Google Sheets para agregar los datos
-    const params = {
-        spreadsheetId: sheetId,
-        range: 'A1', // Asume que quieres empezar desde la celda A1
-        valueInputOption: 'RAW',
-        insertDataOption: 'INSERT_ROWS'
-    };
-
-    const valueRange = {
-        values: [
-            [nombreRegalo, costoTotal]
-        ]
-    };
-
-    gapi.client.sheets.spreadsheets.values.append(params, valueRange)
-        .then(response => {
-            const updatedCells = response.result.updates.updatedCells;
-            alert(`Se han guardado los datos en Google Sheets.`);
-        });
-}
 		const empleados = [];
         const gastos = [];
         const materiales = [];
