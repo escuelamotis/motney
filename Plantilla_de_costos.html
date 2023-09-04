@@ -309,7 +309,7 @@ body {
 </div>
 
     <script>
-
+	window.onload = init;
 	    function onSignIn(googleUser) {
     // Obtener el ID token del usuario
     var id_token = googleUser.getAuthResponse().id_token;
