@@ -328,20 +328,21 @@ body {
     });
 }
 function guardarEnSheet() {
-	gapi.client.setToken({
-    'access_token': gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token
-	});
+    if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
+        alert('Por favor, inicia sesión primero.');
+        return;
+    }
+
     const sheetId = document.getElementById('sheetId').value;
     if (!sheetId) {
         alert('Por favor, ingresa el ID del archivo de Google Sheet.');
         return;
     }
-    const nombreRegalo = document.getElementById('nombreRegalo').value; // Asume que tienes un input con id="nombreRegalo"
-    alert(`Regalo ${nombreRegalo}.`);
-    // Usa la API de Google Sheets para agregar los datos
+    const nombreRegalo = document.getElementById('nombreRegalo').value;
+
     const params = {
         spreadsheetId: sheetId,
-        range: 'A1', // Asume que quieres empezar desde la celda A1
+        range: 'A1',
         valueInputOption: 'RAW',
         insertDataOption: 'INSERT_ROWS'
     };
