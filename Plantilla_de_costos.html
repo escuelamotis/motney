@@ -193,8 +193,10 @@ body {
 </head>
 <body>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
-<div id="tokenDisplay"></div>
+<div id="tokenDisplay"></div>	
 <img id="logo" src="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI" alt="Logo Montney">
+<input type="text" id="sheetId" placeholder="Ingresa el ID de tu hoja de Google Sheets">
+<button onclick="guardarEnSheet()">Guardar en Google Sheets</button>
 <h1 id="titulo-app"></h1>
 
 <div id="contenedor">
@@ -326,6 +328,32 @@ body {
         document.querySelector(".g-signin2").style.display = "block";
         // Ocultar el contenido principal de tu aplicación...
     });
+}
+
+function guardarEnSheet() {
+    const sheetId = document.getElementById('sheetId').value;
+    const nombreRegalo = document.getElementById('nombreRegalo').value; // Asume que tienes un input con id="nombreRegalo"
+    const costoTotal = /* Código para obtener el costo total */;
+
+    // Usa la API de Google Sheets para agregar los datos
+    const params = {
+        spreadsheetId: sheetId,
+        range: 'A1', // Asume que quieres empezar desde la celda A1
+        valueInputOption: 'RAW',
+        insertDataOption: 'INSERT_ROWS'
+    };
+
+    const valueRange = {
+        values: [
+            [nombreRegalo, costoTotal]
+        ]
+    };
+
+    gapi.client.sheets.spreadsheets.values.append(params, valueRange)
+        .then(response => {
+            const updatedCells = response.result.updates.updatedCells;
+            alert(`Se han guardado los datos en Google Sheets.`);
+        });
 }
 		const empleados = [];
         const gastos = [];
