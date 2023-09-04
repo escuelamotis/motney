@@ -335,6 +335,7 @@ function guardarEnSheet() {
         return;
     }
     const nombreRegalo = document.getElementById('nombreRegalo').value; // Asume que tienes un input con id="nombreRegalo"
+    alert(`Regalo ${nombreRegalo}.`);
     // Usa la API de Google Sheets para agregar los datos
     const params = {
         spreadsheetId: sheetId,
