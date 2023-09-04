@@ -330,6 +330,10 @@ body {
 }
 function guardarEnSheet() {
     const sheetId = document.getElementById('sheetId').value;
+    if (!sheetId) {
+        alert('Por favor, ingresa el ID del archivo de Google Sheet.');
+        return;
+    }
     const nombreRegalo = document.getElementById('nombreRegalo').value; // Asume que tienes un input con id="nombreRegalo"
     // Usa la API de Google Sheets para agregar los datos
     const params = {
@@ -351,6 +355,7 @@ function guardarEnSheet() {
             alert(`Se han guardado los datos en Google Sheets.`);
         });
 }
+	    
 function init() {
     gapi.load('client:auth2', function() {
         gapi.client.init({
