@@ -322,10 +322,12 @@ body {
 </div>
 
     <script>
+ let userToken = null;
+
 function onSignIn(googleUser) {
     // Obtener el ID token del usuario
-    var id_token = googleUser.getAuthResponse().id_token;
-    alert(` ${id_token}.`);
+    userToken = googleUser.getAuthResponse().id_token;
+    alert(` ${userToken}.`);
     // Oculta el botón de inicio de sesión
     document.querySelector(".g-signin2").style.display = "none";
 }
@@ -335,6 +337,10 @@ function signOut() {
 }
 function guardarEnSheet() {
     const sheetId = document.getElementById('sheetId').value;
+    if (!userToken) {
+        alert('Por favor, inicia sesión primero.');
+        return;
+    }	
     if (!sheetId) {
         alert('Por favor, ingresa el ID del archivo de Google Sheet.');
         return;
@@ -358,10 +364,10 @@ function guardarEnSheet() {
     const token = google.accounts.id.getAuthResponse().id_token;
 
     // Hacer una solicitud HTTP a la API de Google Sheets
-    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append`, {
+     fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append`, {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${userToken}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(valueRange)
