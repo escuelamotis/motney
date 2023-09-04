@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://accounts.google.com/gsi/client"></script>
 <meta name="google-signin-client_id" content="1098108370388-p095aktl01p3nomld4u12njedr0v319b.apps.googleusercontent.com">
 	<meta charset="UTF-8">
     <meta property="og:title" content="MOTNEY">
@@ -193,6 +193,20 @@ body {
 </head>
 <body>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+<div id="g_id_onload"
+     data-client_id="1098108370388-p095aktl01p3nomld4u12njedr0v319b.apps.googleusercontent.com"
+     data-login_uri="TU_ENDPOINT_DE_LOGIN"
+     data-auto_prompt="false">
+</div>
+<div class="g_id_signin"
+     data-type="standard"
+     data-size="large"
+     data-theme="outline"
+     data-text="sign_in_with"
+     data-shape="rectangular"
+     data-logo_alignment="left">
+</div>
+	
 <img id="logo" src="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI" alt="Logo Montney">
 <input type="text" id="sheetId" placeholder="Ingresa el ID de tu hoja de Google Sheets">
 <button onclick="guardarEnSheet()">Guardar en Google Sheets</button>
@@ -319,14 +333,9 @@ function onSignIn(googleUser) {
     // ...
 
 }
-	    function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-        console.log('User signed out.');
-        // Muestra el botón de inicio de sesión y oculta el contenido principal
-        document.querySelector(".g-signin2").style.display = "block";
-        // Ocultar el contenido principal de tu aplicación...
-    });
+function signOut() {
+    google.accounts.id.disableAutoSelect();
+    // Aquí puedes manejar cualquier lógica adicional para cerrar sesión en tu aplicación.
 }
 function guardarEnSheet() {
     if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
