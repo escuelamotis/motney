@@ -310,12 +310,14 @@ body {
 
     <script>
 	window.onload = init;
-	    function onSignIn(googleUser) {
+function onSignIn(googleUser) {
     // Obtener el ID token del usuario
     var id_token = googleUser.getAuthResponse().id_token;
         alert(` ${id_token}.`);
-    // Mostrar el ID token en el elemento HTML
-    document.getElementById('tokenDisplay').innerText = "ID Token: " + id_token;
+    // Oculta el botón de inicio de sesión
+    document.querySelector(".g-signin2").style.display = "none";
+    // Muestra otros elementos, como el botón "Guardar en Google Sheets"
+    // ...
 
 }
 	    function signOut() {
