@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <script src="https://accounts.google.com/gsi/client"></script>
+	
 <meta name="google-signin-client_id" content="1098108370388-p095aktl01p3nomld4u12njedr0v319b.apps.googleusercontent.com">
 	<meta charset="UTF-8">
     <meta property="og:title" content="MOTNEY">
@@ -192,7 +193,6 @@ body {
 </style>
 </head>
 <body>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
 <div id="g_id_onload"
      data-client_id="1098108370388-p095aktl01p3nomld4u12njedr0v319b.apps.googleusercontent.com"
      data-auto_prompt="false">
@@ -325,23 +325,15 @@ body {
 function onSignIn(googleUser) {
     // Obtener el ID token del usuario
     var id_token = googleUser.getAuthResponse().id_token;
-        alert(` ${id_token}.`);
+    alert(` ${id_token}.`);
     // Oculta el botón de inicio de sesión
     document.querySelector(".g-signin2").style.display = "none";
-    // Muestra otros elementos, como el botón "Guardar en Google Sheets"
-    // ...
-
 }
 function signOut() {
     google.accounts.id.disableAutoSelect();
     // Aquí puedes manejar cualquier lógica adicional para cerrar sesión en tu aplicación.
 }
 function guardarEnSheet() {
-    if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
-        alert('Por favor, inicia sesión primero.');
-        return;
-    }
-
     const sheetId = document.getElementById('sheetId').value;
     if (!sheetId) {
         alert('Por favor, ingresa el ID del archivo de Google Sheet.');
@@ -362,11 +354,29 @@ function guardarEnSheet() {
         ]
     };
 
-    gapi.client.sheets.spreadsheets.values.append(params, valueRange)
-        .then(response => {
-            const updatedCells = response.result.updates.updatedCells;
+    // Obtener el token de autenticación
+    const token = google.accounts.id.getAuthResponse().id_token;
+
+    // Hacer una solicitud HTTP a la API de Google Sheets
+    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(valueRange)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.updates && data.updates.updatedCells) {
             alert(`Se han guardado los datos en Google Sheets.`);
-        });
+        } else {
+            alert('Hubo un error al guardar los datos.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 	    
 		const empleados = [];
