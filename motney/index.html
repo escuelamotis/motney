@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="1098108370388-kvjqsnsgr63lk8ulf4pu22ojb971amns.apps.googleusercontent.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motney</title>
-    <script src="https://accounts.google.com/gsi/client"></script>
 </head>
 <body>
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <!-- Aquí va el resto del contenido de Motney, que se mostrará una vez que el usuario haya iniciado sesión -->
+    <button onclick="signOut();" style="display:none;" id="logoutButton">Cerrar sesión</button>
+    <p id="successMessage" style="display:none;">Exitoso</p>
+    <script>
+        function onSignIn(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            // Aquí puedes usar el id_token para autenticar al usuario en tu backend si es necesario.
+            // O simplemente usar la información del usuario en el frontend.
+            document.getElementById('logoutButton').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'block';
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+                document.getElementById('logoutButton').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'none';
+            });
+        }
+    </script>
 </body>
 </html>
