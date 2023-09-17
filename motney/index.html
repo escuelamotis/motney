@@ -11,11 +11,11 @@
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <button onclick="signOut();" style="display:none;" id="logoutButton">Cerrar sesión</button>
     <p id="successMessage" style="display:none;">Exitoso</p>
+    <p id="tokenDisplay"></p> <!-- Elemento para mostrar el token -->
     <script>
         function onSignIn(googleUser) {
             var id_token = googleUser.getAuthResponse().id_token;
-            // Aquí puedes usar el id_token para autenticar al usuario en tu backend si es necesario.
-            // O simplemente usar la información del usuario en el frontend.
+            document.getElementById('tokenDisplay').innerText = "Token: " + id_token; // Mostrar el token
             document.getElementById('logoutButton').style.display = 'block';
             document.getElementById('successMessage').style.display = 'block';
         }
@@ -26,6 +26,7 @@
                 console.log('User signed out.');
                 document.getElementById('logoutButton').style.display = 'none';
                 document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('tokenDisplay').innerText = ""; // Limpiar el token al cerrar sesión
             });
         }
     </script>
