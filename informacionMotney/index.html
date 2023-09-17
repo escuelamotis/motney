@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	   <meta charset="UTF-8">
+    <meta property="og:title" content="Información MOTNEY">
+	  <meta property="og:description" content="Información sobre Plantilla de costos MOTNEY">
+	  <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1Af6dsFRC5c9IJWAKADEWgxhhW7ZJuERI">	
+    <title>Información Motney - Plantilla de costos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 960px;
+            margin: auto;
+        }
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .instructions {
+            text-align: center;
+            padding: 20px;
+            background: #f4f4f4;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .steps {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .step {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 10px 0;
+	    align-items: center;
+
+        }
+        .step-number {
+            background: #333;
+            color: white;
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            line-height: 25px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .whatsapp-btn img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+        .whatsapp-btn strong {
+            margin-left: 5px;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .step {
+		align-items: center;
+                width: calc(90% - 20px);
+            }
+			#informacion {
+            width: 100%;
+            height: auto;
+        }
+        }
+		  #informacion {
+            width: 100%;
+            height: auto;
+        }
+			.redes-sociales {
+        text-align: center;
+        margin-top: 10px;
+    }
+	  .aviso-privacidad {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+    }
+	#logoEscuela {
+            position: static; 	
+			display: block;
+            margin: 0 auto;
+            width: 300px; /* Ajusta el tamaño del logo según tus necesidades */
+            height: 300px;
+		
+        }
+.step-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px;
+      background-color: #6d009b;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#wompi-container,
+#paypal-container,
+#mercadopago-container,
+#bancolombia-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+#wompi-logo,
+#paypal-logo,
+#mercadopago-logo,
+#bancolombia-qr {
+  width: 150px;  
+  height: 75px;
+  margin-bottom: 10px;
+}
+
+#wompi-button,
+#paypal-button,
+#mercadopago-button,
+#bancolombia-button {
+  background-color: #6d009b; 
+  color: white; 
+  border: none; 
+  padding: 15px 32px; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  margin: 4px 2px; 
+}
+
+@media (min-width: 768px) {
+  .payment-methods {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  #wompi-container,
+  #paypal-container,
+  #mercadopago-container,
+  #bancolombia-container {
+    margin: 0 20px;
+  }
+}
+
+    </style>
+</head>
+<body>
+  <a href="#Comprar" class="step-button"><span class="icon">&#x1F447;&#x1F3FC;</span> Comprar plantilla</a>
+    <img id="informacion" src="https://drive.google.com/uc?export=view&id=192Atp2GaNt9ThPLlT-EBP8ZSZoutEcza" alt="Información Motney">
+            <div id="Comprar" class="step">
+                <h2><span class="step-number">1</span>Realiza el pago </h2>
+                <p>Selecciona tu método de pago preferido y sigue las instrucciones en pantalla para comprar tu plantilla</p>
+				<div class="payment-methods">
+					<a id="wompi-container" href="https://checkout.wompi.co/l/X4ytZA">
+					  <img id="wompi-logo" src="https://wompi.com/assets/img/home/logo-wompi.svg">
+					  <button id="wompi-button">Pagar con Wompi</button>
+					</a>
+					<a id="paypal-container" href="https://www.paypal.com/paypalme/davidpiedrahita1">
+					  <img id="paypal-logo" src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.png">
+					  <button id="paypal-button">Pagar con PayPal</button>
+					</a>
+
+					<a id="mercadopago-container" href="https://mpago.li/2wMYDwX">
+					  <img id="mercadopago-logo" src="https://http2.mlstatic.com/frontend-assets/home-landing/logo-mercadopago.jpg">
+					  <button id="mercadopago-button">Pagar con MercadoPago</button>
+					</a>
+
+					<a id="bancolombia-container" href="https://drive.google.com/uc?export=view&id=1riUkcdTBbHCVY9pzuzMH67kLBuWKZ7Ys">
+					  <img id="bancolombia-qr" src="https://polymedicaldecolombia.com/wp-content/uploads/territorio-qr-1.png">
+					  <button id="bancolombia-button">Pagar QR Bancolombia</button>
+					</a>
+				</div>
+				<h2><span class="step-number">2</span>Confirma tu pago por Whatsapp</h2>
+                <p>Después de realizar el pago, por favor confirma la transacción a través de Whatsapp haciendo clic en el botón de abajo. para enviarte la plantilla de costos Motney y el video de ejemplo</p>
+				<a href="https://api.whatsapp.com/send/?phone=573008678022" target="_blank" class="whatsapp-btn">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png?20220228223904">
+					Confirmar pago por <strong>Whatsapp</strong>
+				</a>
+			</div>
+
+			<div class="redes-sociales">
+		<a href="https://www.facebook.com/profile.php?id=100083080994547" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook" width="30" height="30"></a>
+		<a href="https://www.instagram.com/escuela_motis" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" height="30"></a>
+		<a href="https://www.youtube.com/@escuelamotis696" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="Youtube" width="30" height="30"></a>
+		<a href="https://www.tiktok.com/@escuelamotis" target="_blank"><img src="https://sf-tb-sg.ibytedtos.com/obj/eden-sg/uhtyvueh7nulogpoguhm/tiktok-icon2.png" alt="tiktok" width="30" height="30"></a>
+
+	</div>
+<!-- Aviso de privacidad -->
+		<div class="aviso-privacidad">
+			<p>Producto de uso personal, prohibida su venta y distribución</p>
+		</div>
+		<img id="logoEscuela" src="https://drive.google.com/uc?export=view&id=1kT1ZFfupay0Vu1tm71x-YVlU3z8kBgT4" alt="Escuela Motis">
+<script>
+  document.getElementById('wompi-container').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.open('https://checkout.wompi.co/l/X4ytZA', 'Wompi Payment', 'width=800,height=600');
+  });
+
+  document.getElementById('paypal-container').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.open('https://www.paypal.com/paypalme/davidpiedrahita1', 'Paypal Payment', 'width=800,height=600');
+  });
+
+  document.getElementById('mercadopago-container').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.open('https://mpago.li/2wMYDwX', 'MercadoPago Payment', 'width=800,height=600');
+  });
+
+  document.getElementById('bancolombia-container').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.open('https://drive.google.com/uc?export=view&id=1riUkcdTBbHCVY9pzuzMH67kLBuWKZ7Ys', 'QR Bancolombia Payment', 'width=800,height=600');
+  });
+</script>
+</body>
+</html>
