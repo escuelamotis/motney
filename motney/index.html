@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Carga la nueva biblioteca de Google Sign-In -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="1098108370388-kvjqsnsgr63lk8ulf4pu22ojb971amns.apps.googleusercontent.com">
     <meta charset="UTF-8">
@@ -8,27 +9,25 @@
     <title>Motney</title>
 </head>
 <body>
+    <!-- Botón de inicio de sesión de Google -->
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <button onclick="signOut();" style="display:none;" id="logoutButton">Cerrar sesión</button>
-    <p id="successMessage" style="display:none;">Exitoso</p>
-    <p id="tokenDisplay"></p> <!-- Elemento para mostrar el token -->
+    <button onclick="signOut();">Cerrar sesión</button>    
+    <div id="tokenDisplay"></div> <!-- Div para mostrar el token -->
+
     <script>
         function onSignIn(googleUser) {
             var id_token = googleUser.getAuthResponse().id_token;
-            document.getElementById('tokenDisplay').innerText = "Token: " + id_token; // Mostrar el token
-            document.getElementById('logoutButton').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'block';
+            // Muestra el token en pantalla
+            document.getElementById('tokenDisplay').innerText = 'Token: ' + id_token;
         }
 
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 console.log('User signed out.');
-                document.getElementById('logoutButton').style.display = 'none';
-                document.getElementById('successMessage').style.display = 'none';
-                document.getElementById('tokenDisplay').innerText = ""; // Limpiar el token al cerrar sesión
+                document.getElementById('tokenDisplay').innerText = ''; // Limpia el token al cerrar sesión
             });
         }
-    </script>
+    </script> 
 </body>
 </html>
